@@ -1,0 +1,132 @@
+<section id="contact" class="section">
+    <div class="contact-container">
+        <h1 class="contact-title">
+            <div class="contact-title-content">
+                <span class="contact-still-text">GET IN</span>
+                <span class="contact-curious-text">TOUCH</span>
+            </div>
+        </h1>
+  
+        <div class="contact-content">
+            <form class="contact-form" id="contact-form" onsubmit="sendEmail(event)" style="margin-left: 0;">
+              <div class="contact-input-container">
+                  <input type="text" required class="contact-input" id="name" name="from_name">
+                  <label class="contact-label">your name</label>
+              </div>
+  
+              <div class="contact-input-container">
+                  <input type="email" required class="contact-input" id="email" name="reply_to">
+                  <label class="contact-label">your email</label>
+              </div>
+  
+              <div class="contact-input-container">
+                  <textarea required class="contact-input" id="message" name="message"></textarea>
+                  <label class="contact-label">your message</label>
+              </div>
+  
+              <button type="submit" class="contact-btn">send message</button>
+          </form>
+  
+            <div class="contact-info">
+              <div class="info-item">
+                  <strong>email:</strong>
+                  <span class="email-link" onclick="window.location.href='mailto:donzy8787@gmail.com'">donzy8787@gmail.com</span>
+              </div>
+              <div class="info-item">
+                  <strong>check out my:</strong>
+                  <div class="social-links">
+                    <a href="https://www.linkedin.com/in/donald-okonkwo-591a85238/" class="social-link" target="_blank">LinkedIn</a> <span>|</span>
+                    <a href="https://github.com/donzyC" class="social-link" target="_blank">GitHub</a>
+                </div>
+              </div>
+              <div class="info-item">
+                  <strong>what do you think:</strong>
+                  <div class="button-group">
+                    <span class="feedback-links">
+                      <a href="#" class="feedback-link" onclick="sendFeedback('cooked'); return false;">you cooked</a> <span>|</span>
+                      <a href="#" class="feedback-link" onclick="sendFeedback('not-cooked'); return false;">you're cooked</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  
+    <script type="text/javascript">
+      (function() {
+          emailjs.init("2HWEYWtxGKKK_niWv");
+      })();
+  
+      function sendEmail(e) {
+          e.preventDefault();
+  
+          // Show loading message
+          showCustomAlert('Sending message...');
+  
+          // Get form values
+          const templateParams = {
+              from_name: document.getElementById('name').value,
+              reply_to: document.getElementById('email').value,
+              message: document.getElementById('message').value
+          };
+  
+          // Send email using EmailJS
+          emailjs.send('service_tiighhl', 'template_9sr16lj', templateParams)
+              .then(function(response) {
+                  console.log('SUCCESS!', response.status, response.text);
+                  showCustomAlert('Message sent successfully!');
+                  document.getElementById('contact-form').reset();
+              }, function(error) {
+                  console.log('FAILED...', error);
+                  showCustomAlert('Oops! Something went wrong.');
+              });
+      }
+  </script>
+  
+  <script type="text/javascript">
+      (function() {
+          // Initialize EmailJS with your public key
+          emailjs.init("2HWEYWtxGKKK_niWv");
+      })();
+  
+      function showCustomAlert(message) {
+          // Create custom alert element
+          const alertDiv = document.createElement('div');
+          alertDiv.className = 'custom-alert loading-container';
+          alertDiv.innerHTML = `
+              <div class="loading-text">
+                  <div class="loading-line">${message}</div>
+              </div>`;
+          
+          // Add to body
+          document.body.appendChild(alertDiv);
+          alertDiv.style.display = 'block';
+  
+          // Remove after 2 seconds
+          setTimeout(() => {
+              alertDiv.remove();
+          }, 3000);
+      }
+  
+      function sendFeedback(type) {
+          // Template parameters
+          const templateParams = {
+              feedback_type: type,
+              message: type === 'cooked' 
+                  ? "i think YOU COOKED on your DXAI website"
+                  : "i think YOU'RE COOKED on your DXAI website"
+          };
+  
+          // Send email
+          emailjs.send('service_tiighhl', 'template_9sr16lj', templateParams)
+              .then(function(response) {
+                  console.log('SUCCESS!', response.status, response.text);
+                  showCustomAlert('Thanks for the feedback!');
+              }, function(error) {
+                  console.log('FAILED...', error);
+                  showCustomAlert('Oops! Something went wrong.');
+              });
+      }
+  </script>
+  </section>

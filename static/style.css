@@ -1,0 +1,1403 @@
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-font-smoothing: antialiased;
+    padding-top: 20%;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+.logo {
+    display: flex;
+    height: 100%;
+    color: white;
+    margin-left: 4rem;
+}
+.myimg {
+    width: 150px;
+    height: 70px;
+}
+
+#home {
+    min-height: 80vh;  /* Full viewport height for home section */
+    position: relative;
+}
+
+nav.navbar {
+    min-height: 75px;  /* Ensure consistent navbar height */
+    padding: 0.5rem 0; /* Add some vertical padding */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+    border-bottom: 1px solid white;
+}
+.loading-container {
+  display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 3000;
+      background-color: rgba(0, 0, 0, 0.5); /* Fallback for older browsers */
+      -webkit-backdrop-filter: blur(10px); /* For Safari */
+      backdrop-filter: blur(10px);
+      -webkit-transform: translate(-50%, -50%);
+      padding: 1.5rem;
+      border-radius: 10px;
+      width: auto;
+      max-width: 90vw;
+      border: 2px solid white;
+  }
+  .loading-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  }
+
+  .loading-line {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  } 
+.spinner-wrapper {
+    display: inline-flex; /* Make the spinner inline */
+    align-items: center; /* Center vertically within the span */
+}
+
+.loading-container .spinner-border {
+      width: 1.5rem; /* Adjust size as needed */
+      height: 1.5rem; /* Adjust size as needed */
+      color: #ff6100; /* Spinner color */
+}
+.navbar-nav .nav-link {
+    font-size: 2.5vh;
+    color: white;
+    transition: color 0.3s ease;
+}
+.navbar-nav .nav-link:hover {
+    color: #ff6100 !important;
+}
+.navbar-nav {
+  margin-right: 2rem;
+  margin-left: 0; /* Remove fixed margin */
+  justify-content: flex-end; /* Align to right */
+}
+.navbar-nav .nav-item {
+    margin-right: 2.5vh; /* Adds space between each nav item */
+}
+.navbar-collapse {
+  justify-content: flex-end;  /* This will push the items to the right */
+}
+.navbar-toggler {
+  border: none; /* Remove border */
+}
+
+.navbar-toggler:focus {
+  box-shadow: none; /* Remove focus outline */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 97, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important; /* Change color to #ff6100 */
+}
+.text-center {
+  font-weight: 900;
+  font-size: 1rem;
+  margin-bottom: 2rem; /* Add margin to create space between text and form */
+  position: absolute;
+  top: 40%; /* Adjust this value to move text higher */
+  left: 10%;
+  width: 80%;
+  transform: translateY(-50%);/* Adjust for the top centering effect */
+}
+.line {
+    display: block; /* Ensure each line is on its own */
+    text-align: left; /* Align text to the left */
+    font-size: 2rem; /* Default font size */
+    font-family: 'Montserrat';
+    font-weight:700;
+    margin-bottom: 0rem; /* Space between lines */
+    color: white; /* Custom color */
+}
+.container {
+  margin: 0;
+  background: #00000000;
+  color: white;
+  max-width: 400px;
+  text-align: left;
+  width: 70%;
+  position: absolute; /* Add this */
+  top: 60%; /* Position it below the text */
+  left: 10%; /* Center horizontally */
+}
+.container form {
+  display: flex;
+  gap: 1rem;  /* Add space between input and button */
+  width: 100%;
+}
+.form-group {
+  flex-grow: 1; /* Input grows to fill available space */
+  margin: 0;
+}
+.container form .form-group {
+  flex-grow: 1;
+}
+.form-control {
+    border: none; /* Black border */
+    border-radius: 6px; /* Optional: Rounded corners */
+    padding: 0.9rem 1rem; /* Optional: Add some padding for better spacing */
+    font-size: 16px; /* Optional: Adjust the text size */
+    text-align: left;
+    overflow-x: auto;     /* Add horizontal scroll if needed */
+    white-space: nowrap;  /* Keep text in single line */
+    width: 100%;         /* Take full width of container */
+    box-sizing: border-box;
+    background-color: transparent;
+    color: white;
+    box-shadow: 3px 3px 10px rgba(0,0,0,1),
+    -1px -1px 6px rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+}
+.form-control:focus {
+  outline: none;
+  border: 2px solid transparent;
+  color: transparent;
+  box-shadow: 3px 3px 10px rgba(0,0,0,1),
+              -1px -1px 6px rgba(255, 255, 255, 0.4),
+  }
+  
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    position: relative;
+    color: white;
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+  .input-container .label {
+    font-size: 15px;
+    padding-left: 10px;
+    position: absolute;
+    top: 13px;
+    transition: 0.3s;
+    pointer-events: none;
+    color: gray;
+    white-space: nowrap;
+    max-width: 90%; /* Limit width when not focused */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+  .input {
+      width: 100%;
+      height: 45px;
+      border: none;
+      outline: none;
+      padding: 0px 7px;
+      border-radius: 6px;
+      color: black;
+      font-size: 15px;
+      background-color: white;
+      box-shadow: 3px 3px 10px rgba(0,0,0,1),
+                  -1px -1px 6px rgba(255, 255, 255, 0.4);
+  }
+
+  .input:focus {
+      border: 4px solid transparent;
+      color: black;
+      box-shadow: 3px 3px 10px rgba(0,0,0,1),
+                  -1px -1px 6px rgba(255, 255, 255, 0.4),
+                  inset 3px 3px 10px rgba(0,0,0,1),
+                  inset -1px -1px 6px rgba(255, 255, 255, 0.4);
+  }
+
+  .input-container .input:valid ~ .label,
+  .input-container .input:focus ~ .label {
+    transition: 0.3s;
+    padding-left: 2px;
+    transform: translateY(-35px);
+    font-size: 14px;
+    color: gray;
+    max-width: none; /* Remove width limitation */
+    overflow: visible;
+    text-overflow: clip;
+}
+  input, textarea {
+    font-size: 16px !important; /* Prevents iOS zoom on focus */
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    font-size: 16px;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+    font-family: inherit;
+    margin-right: 2vh;
+    border-radius: 10px;
+    min-width: fit-content;
+    white-space: nowrap;
+}
+.btn:hover {
+    color: white !important;  /* Force white text on hover */
+}
+.btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff6100;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+.btn:hover::before {
+    transform: translateX(0);
+}
+.btn-primary {
+    background-color: transparent; /* Remove default background */
+    border-color: white; /* Set border color */
+    color: white; /* Set text color */
+}
+.btn-primary:hover {
+    background-color: transparent; /* Change background color on hover */
+    color: white !important; /* Keep text color consistent */
+    border-color: white; /* Ensure border color matches */
+    transition: background-color 0.5s ease;
+}
+.btn-primary:focus {
+    box-shadow: none; /* Remove focus outline */
+}
+.container form button {
+  width: auto;  /* Let button size to its content */
+  white-space: nowrap;  /* Prevent button text from wrapping */
+}
+.button-container {
+    width: 100%; /* Full width */
+    text-align: center; /* Center the buttons */
+    padding-left: 0;
+    position: absolute; /* Add position absolute */
+    top: 75%; /* Position it below the container */
+    left: 10%; /* Match container's left position */
+    width: 80%; /* Match container's width */
+    opacity: 0; /* Start hidden */
+    visibility: hidden; /* Start hidden */
+    margin-bottom: 100px; /* Adds space below the buttons */
+}
+.button-container .btn {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.button-container .result-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.result-container button {
+    width: calc(100% / 7 - 10px); /* Adjust button width to fit three buttons in a row */
+}
+.btn-close {
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat !important;
+    opacity: 1;
+}
+
+.btn-close:hover {
+    opacity: 0.75;
+}
+/* to add animation styles */
+@keyframes slideFromLeft {
+  from {
+      transform: translateX(-100%);
+      opacity: 0;
+  }
+  to {
+      transform: translateX(0);
+      opacity: 1;
+  }
+}
+/* Add animation classes */
+  .animate-buttons .btn {
+      animation: slideFromLeft 0.5s forwards;
+  }
+
+  /* Stagger the animation for each button */
+  .animate-buttons .btn:nth-child(1) { animation-delay: 0s; }
+  .animate-buttons .btn:nth-child(2) { animation-delay: 0.3s; }
+  .animate-buttons .btn:nth-child(3) { animation-delay: 0.6s; }
+  .animate-buttons .btn:nth-child(4) { animation-delay: 0.9s; }
+  .animate-buttons .btn:nth-child(5) { animation-delay: 1.2s; }
+  .animate-buttons .btn:nth-child(6) { animation-delay: 1.5s; }
+
+  @keyframes slideFromTop {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromBorder {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);  /* Start from behind the border */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);  /* End at natural position */
+    }
+}
+
+
+  @media screen and (min-width: 320px) and (max-width: 430px) {
+      body {
+          padding-top: 25%;
+      }
+
+      .text-center {
+          top: 30%;
+          left: 10%;
+          width: 80%;
+      }
+
+      .line {
+          font-size: 1.8rem;  /* Adjusted for better readability */
+          margin-bottom: 0.5rem;
+      }
+
+      .container {
+          top: 45%;
+          width: 90%;
+          left: 5%;
+          padding: 0 10px;
+      }
+
+      .input-container {
+          width: 100%;
+          margin-right: 0.5rem;
+      }
+
+      .input {
+          height: 40px;  /* Slightly smaller height */
+          font-size: 14px;
+          padding: 0 10px;
+      }
+
+      .input-container .label {
+          font-size: 13px;
+      }
+
+      .input-container .input:valid ~ .label,
+      .input-container .input:focus ~ .label {
+          font-size: 12px;
+      }
+
+      .btn {
+          padding: 0.7rem 1.2rem;
+          font-size: 14px;
+      }
+
+      .button-container {
+          top: 55%;
+          left: 5%;
+          width: 90%;
+      }
+
+      .button-container .btn {
+          width: calc(50% - 10px);
+          margin: 5px;
+          font-size: 0.9rem;
+          padding: 0.6rem 1rem;
+      }
+
+      .loading-container {
+          width: 50%;
+          left: 50%;
+          transform: translateX(-50%);
+          font-size: 0.9rem;
+          padding: 0.5rem;
+      }
+
+      .navbar-nav {
+          margin-right: 1rem;
+      }
+
+      .logo {
+          margin-left: 1rem;
+      }
+
+      .myimg {
+          width: 120px;
+          height: 56px;
+      }
+  }
+@media screen and (max-height: 600px) and (orientation: landscape) {
+  body {
+      padding-top: 100px; /* Increased padding to prevent overlap with navbar */
+  }
+
+  .navbar {
+      min-height: 60px; /* Slightly smaller navbar in landscape */
+  }
+
+  .text-center {
+      top: 100px; /* Adjust position to prevent navbar overlap */
+      position: relative;
+      margin-bottom: 30px;
+  }
+
+  .line {
+      font-size: 1.5rem; /* Smaller font size in landscape */
+      margin-bottom: 0.3rem;
+      line-height: 2.5rem;
+  }
+
+  .container {
+      position: relative;
+      top: 20px; /* Adjust position */
+      margin-bottom: 20px;
+      width: 80%;
+      left: 10%;
+  }
+
+  .input-container {
+      margin-bottom: 10px;
+  }
+
+  .input {
+      height: 35px; /* Slightly smaller input height */
+  }
+
+  .button-container {
+      position: relative;
+      top: 30px; /* Adjust position */
+      margin-bottom: 20px;
+      width: 80%;
+      left: 10%;
+  }
+
+  .button-container .btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      margin: 3px;
+      width: calc(33.33% - 10px); /* 3 buttons per row in landscape */
+  }
+
+  /* Adjust modal position in landscape */
+  .modal-dialog {
+      margin: 10px auto;
+  }
+
+  /* Ensure content is scrollable if needed */
+  .modal-body {
+      max-height: 60vh;
+      overflow-y: auto;
+  }.navbar-collapse {
+      display: flex !important; /* Force display of nav items */
+      flex-basis: auto;
+  }
+
+  .navbar-toggler {
+      display: none !important; /* Hide hamburger menu */
+  }
+
+  .navbar-nav {
+      flex-direction: row;
+      margin-right: 1rem;
+  }
+
+  .navbar-nav .nav-item {
+      margin-left: 1rem;
+  }
+
+  .logo {
+      margin-left: 1rem;
+  }
+
+  .myimg {
+      width: 100px; /* Slightly smaller logo in landscape */
+      height: 47px;
+  }
+
+  /* Ensure nav links are visible and properly spaced */
+  .navbar-nav .nav-link {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+  }
+}
+
+  /* Add specific support for blurring the loading sreen backgroufor iOS devices */
+@supports (-webkit-touch-callout: none) {
+  .loading-container {
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+  }
+}
+
+/* Add specific support for Safari */
+@media not all and (min-resolution:.001dpcm) { 
+  @supports (-webkit-appearance:none) {
+      .loading-container {
+          -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+      }
+  }
+}
+@media screen and (min-width: 744px) and (max-width: 1024px) {
+  .text-center {
+      top: 40%;
+      left: 10%;
+      width: 80%;
+  }
+  .line {
+        font-size: 3.4rem; /* Increase font size on large devices */
+        margin-bottom: -1rem; /* Increase spacing on larger screens */
+  }
+  
+  .container {
+      padding: 0rem;
+      top: 60%;
+      left: 10%;
+      width: 80%;
+      max-width: 600px; /* Added this to increase input bar length */
+  }
+  .input-container {
+      width: 100%; /* Ensure input container takes full width */
+  }
+
+  .input {
+      width: 100%; /* Ensure input takes full width of container */
+      font-size: 16px; /* Slightly larger font for better readability on tablets */
+  }
+  .button-container {
+      top: 65%;
+      left: 10%;
+      width: 80%;
+  }
+
+  .button-container .btn {
+      width: calc(33.33% - 1rem); /* 3 buttons per row */
+      margin: 0.5rem;
+  }
+
+  body {
+      padding-top: 15%;
+  }
+  .about-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* Add this for larger screens */
+@media (min-width: 1025px) {
+  .text-center {
+      font-size: 80px;
+      line-height: 2.7rem;
+      top: 45%;
+      left: 10%;
+      width: 80%;
+  }
+  .line {
+      font-size: 3.4rem; /* Increase font size on large devices */
+      margin-bottom: -1rem; /* Increase spacing on larger screens */
+  }
+  .container {
+      padding: 0rem;
+      max-width: 900px;
+      top: 65%;
+      left: 10%;
+      width: 80%;
+  }
+  .button-container {
+      top: 80%;
+      left: 10%;
+      width: 80%;
+  }
+  .button-container .btn {
+      width: calc(16.66% - 1rem); /* 6 buttons per row */
+      margin: 0.5rem;
+  }
+
+  body {
+      padding-top: 10%;
+  }
+}
+
+.section {
+    padding: 60px;  /* Increased padding for better spacing */
+    position: relative;
+}
+
+
+.section-separator {
+    width: 35%;  /* Makes the line shorter */
+    height: 1px;  /* Line thickness */
+    background-color: white;
+    margin: 90px auto 90px;  /* Centers the line and adds vertical spacing */
+    opacity: 0.7;  /* Makes the line slightly subtle */
+}
+/* Base styles for about section */
+#about.section {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding: 100px 0 30px;
+    margin-bottom: 0;
+}
+
+.about-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.about-title {
+    margin-top: 0rem;
+    margin-bottom: 80px;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden;  /* Add this to clip content */
+
+}
+
+.about-title-content {
+    position: relative;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.about-title-content.animate {
+    animation: slideFromTop 1s forwards;
+}
+
+.about-content p:not(.important-note) {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.about-content p:not(.important-note).animate {
+    animation: slideFromBottom 1s forwards;
+}
+
+
+.about-title-content {
+    position: relative;
+}
+
+.still-text {
+    display: block;  /* Makes the span take full width and force new line */
+    font-size: 1.2rem;
+    opacity: 0.6;
+}
+
+.curious-text {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.about-content {
+    text-align: center;
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.about-content p {
+    position: relative;
+    padding-left: 2.5rem;
+    width: 100%;
+    margin-bottom: 60px;
+    width: 40%; /* Make paragraph more narrow */
+    margin-left: auto; /* Center the paragraph */
+    margin-right: auto; /* Center the paragraph */
+
+}
+
+.large-quote {
+    color: #ff6100;
+    font-family: 'Rubik Microbe', cursive;
+    font-size: 4rem;
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    line-height: 1;
+}
+
+.important-note {
+    position: relative;
+    width: 100% !important;
+    max-width: 500px;
+    padding-left: 10px !important; 
+    border-left: 0px solid #ff6100;
+    text-align: left;
+    left: 4%;
+    transition: border-left 0.3s ease;
+    overflow: hidden;
+    margin-bottom: 50px;  /* Increased space between main text and note */
+}
+
+.important-note strong {
+    color: #ff6100;
+}
+
+.important-note.animate-border {
+    border-left: 3px solid #ff6100;
+}
+
+.important-note .note-content {
+    opacity: 0;
+    transform: translateX(-100%);  /* Start completely behind the border */
+    position: relative;  /* Add this */
+    left: 0;  /* Add this */
+    width: 100%;  /* Add this */
+}
+
+.important-note.animate .note-content {
+    animation: slideFromBorder 1s forwards;
+    animation-delay: 1s;
+}
+
+
+/* Responsive adjustments */
+@media screen and (min-width: 320px) and (max-width: 430px) {
+    #about.section {
+        padding: 1rem 0.5rem;
+    }
+
+    .about-title .still-text {
+        font-size: 0.9rem;
+    }
+
+    .about-title .curious-text {
+        font-size: 1.8rem;
+    }
+
+    .about-content p {
+        padding-left: 1.5rem;
+        font-size: 0.85rem;
+        width: 100%;
+    }
+
+    .large-quote {
+        font-size: 5rem;
+        top: -1rem;
+        left: -0.2rem;
+    }
+
+    .important-note {
+        max-width: 95%;
+        margin: 2rem auto;
+        font-size: 0.85rem;
+    }
+}
+@media screen and (min-width: 744px) and (max-width: 1024px) {
+    #about.section {
+        padding: 2rem 2.5rem;
+    }
+    .about-title .still-text {
+        font-size: 1.2rem;  
+        text-align: left;
+    }
+
+    .about-title .curious-text {
+        font-size: 3.4rem;  
+        text-align: left;
+    }
+
+    .about-content p {
+        padding-left: 2.5rem;  
+        font-size: 1.1rem;  
+        width: 60%;       
+        margin: 0 auto 2rem;  
+    }
+
+    .large-quote {
+        font-size: 6rem;    
+        top: -1.2rem;       
+        left: -0.5rem;    
+    }
+
+    .important-note {
+        max-width: 70%;     
+        margin: 4rem auto;  
+        font-size: 1.1rem;  
+        padding: 1rem 1.5rem; 
+    }
+}
+@media (min-width: 1025px) {
+    .about-title .still-text {
+        font-size: 1.6rem;
+    }
+
+    .about-title .curious-text {
+        font-size: 3.4rem;
+    }
+
+    .about-content p {
+        padding-left: 3rem;
+        font-size: 1.1rem;
+        width: 40%;
+    }
+
+    .large-quote {
+        font-size: 10rem;
+        top: -2rem;
+        left: -1.5rem;
+    }
+
+    .important-note {
+        max-width: 350px;
+        margin: 5rem auto;
+        font-size: 1rem;
+    }
+}
+/* Contact Section Styles */
+#contact.section {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding: 60px 0 120px;
+    margin-bottom: 0;
+    min-height: 48vw;
+    background-color: black;
+    position: relative;
+}
+
+.contact-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Title Styles */
+.contact-title {
+    margin-top: 0;  /* Added to ensure consistency */
+    margin-bottom: 80px;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-title-content {
+    position: relative;
+    opacity: 0;  /* Start hidden */
+    transform: translateY(-100%);  /* Start above the viewport */
+}
+
+.contact-still-text {
+    font-size: 1.6rem;
+    opacity: 0.6;
+    display: block;
+}
+
+.contact-curious-text {
+    font-size: 3.4rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* Form Styles */
+.contact-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.contact-form {
+    flex: 1;
+    max-width: 800px;
+    opacity: 0;
+    transform: translateX(-100%);
+    width: 80%; /* Control the width of the form */
+}
+
+.contact-input-container {
+    position: relative;
+    margin-bottom: 2rem;
+    max-width: 400px; /* Limit the width of input containers */
+}
+
+.contact-input {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+textarea.contact-input {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.contact-label {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.contact-input:focus {
+    outline: none;
+    box-shadow: none;
+    border-bottom-color: #ff6100;
+}
+
+.contact-input:focus,
+.contact-input:valid {
+    border-bottom-color: #ff6100;
+}
+
+.contact-input:focus + .contact-label,
+.contact-input:valid + .contact-label {
+    transform: translateY(-20px);
+    font-size: 12px;
+    color: #ff6100;
+}
+
+.contact-btn {
+    display: inline-block;
+    padding: 0.9rem 0.5rem;
+    font-size: 16px;
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+    font-family: inherit;
+    margin-right: 2vh;
+    border-radius: 10px;
+    min-width: fit-content;
+    white-space: nowrap;
+}
+.contact-btn:hover {
+    color: white !important;  /* Force white text on hover */
+}
+.contact-btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ff6100;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+    z-index: -1;
+}
+.contact-btn:hover::before {
+    transform: translateX(0);
+}
+
+/* Contact Info Styles */
+.contact-info {
+    flex: 1;
+    max-width: 400px;
+    opacity: 0;
+    margin-top: 2rem;
+    transform: translateX(100%);
+}
+
+.info-item {
+    margin-bottom: 2rem;
+}
+
+.info-item strong {
+    display: block;
+    color: #ff6100;
+    margin-bottom: 0.5rem;
+}
+.social-links span, .feedback-links span {
+    color: rgba(255, 255, 255, 0.5);
+    pointer-events: none; /* Prevents clicks on separator */
+}
+
+.email-link,
+.social-link,
+.feedback-link {
+    display: inline-block; /* Change to inline-block */
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+    width: fit-content; /* Ensure link only takes up needed space */
+}
+
+/* Hover color effect */
+.email-link:hover,
+.social-link:hover,
+.feedback-link:hover {
+    color: #ff6100;
+}
+
+/* Common underline animation styles */
+.email-link::after,
+.social-link::after,
+.feedback-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #ff6100;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+/* Common hover animation effect */
+.email-link:hover::after,
+.social-link:hover::after,
+.feedback-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.social-links, .feedback-links {
+    display: inline-flex; /* Change to inline-flex */
+    align-items: center;
+    gap: 1rem;
+}
+
+
+/* Animation Classes */
+.contact-title-content.animate {
+    animation: slideFromTop 1s forwards;  /* Apply animation when .animate class is added */
+}
+.contact-form.animate {
+    animation: slideFromLeft 1s forwards;
+    animation-delay: 0.3s; /* Slight delay after title animation */
+}
+.contact-content.animate {
+    animation: fadeInUp 1s forwards;
+}
+
+.contact-info.animate {
+    animation: slideFromRight 1s forwards;
+    animation-delay: 0.3s; /* Same delay as form */
+}
+
+.custom-alert {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+    min-width: 200px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes slideFromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Responsive Styles */
+
+/* Mobile devices */
+@media screen and (min-width: 320px) and (max-width: 430px) {
+    #contact.section {
+        padding: 1rem 0.5rem;
+    }
+
+    .contact-title .contact-still-text {
+        font-size: 0.9rem;
+    }
+
+    .contact-title .contact-curious-text {
+        font-size: 1.8rem;
+    }
+
+    .contact-content {
+        padding: 0 1rem;
+        flex-direction: column; /* Stack form and info vertically */
+        gap: 2rem; /* Add space between form and info */
+    }
+
+    .contact-form {
+        width: 90%;
+        margin-left: 0.5rem;
+    }
+
+    .contact-input-container {
+        max-width: 100%;
+    }
+
+    .contact-info {
+        margin-top: 1rem;
+        padding: 0;
+        width: 100%; /* Full width */
+    }
+
+    .info-item {
+        margin-bottom: 1.5rem;
+        font-size: 0.9rem;
+        word-wrap: break-word; /* Ensure long text wraps */
+    }
+
+    .social-links, .feedback-links {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+
+    /* Ensure links wrap properly */
+    .social-links span, .feedback-links span {
+        display: none; /* Hide the separator on mobile */
+    }
+
+    .social-links a, .feedback-links a {
+        display: block; /* Stack links vertically */
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    .social-link, .feedback-link {
+        padding: 2px 0; /* Add small vertical padding for better touch targets */
+    }
+}
+
+/* Tablets */
+@media screen and (min-width: 744px) and (max-width: 1024px) {
+    #contact.section {
+        padding: 2rem 2.5rem;
+    }
+
+    .contact-title .contact-still-text {
+        font-size: 1.2rem;
+        text-align: left;
+    }
+
+    .contact-title .contact-curious-text {
+        font-size: 3.4rem;
+        text-align: left;
+    }
+
+    .contact-content {
+        gap: 3rem;
+        padding: 0 2rem;
+    }
+
+    .contact-form {
+        width: 85%;
+        margin-left: 1rem;
+    }
+
+    .contact-input-container {
+        max-width: 350px;
+    }
+
+    .contact-info {
+        margin-top: 1.5rem;
+    }
+
+    .info-item {
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+    #contact.section {
+        padding: 60px 0 120px;
+    }
+
+    .contact-title .contact-still-text {
+        font-size: 1.6rem;
+    }
+
+    .contact-title .contact-curious-text {
+        font-size: 3.4rem;
+    }
+
+    .contact-content {
+        gap: 4rem;
+        padding: 0;
+    }
+
+    .contact-form {
+        width: 80%;
+    }
+
+    .contact-input-container {
+        max-width: 500px;
+    }
+
+    .contact-info {
+        margin-top: 2rem;
+        max-width: 400px;
+    }
+
+    .info-item {
+        margin-bottom: 2.5rem;
+        font-size: 1.1rem;
+    }
+
+    .social-links, .feedback-links {
+        gap: 1.2rem;
+    }
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap; /* Keeps content in one line */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    position: relative;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+}
+
+.footer-bottom a {
+    color: #ff6100;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.footer-bottom a:hover {
+    opacity: 0.8;
+}
+/* Mobile devices */
+@media screen and (min-width: 320px) and (max-width: 430px) {
+    .footer-bottom {
+        font-size: 0.75rem;
+        padding: 1rem;
+        margin-top: 2rem;
+        width: 90%;
+    }
+}
+
+/* Tablets */
+@media screen and (min-width: 744px) and (max-width: 1024px) {
+    .footer-bottom {
+        font-size: 0.85rem;
+        padding: 1.25rem;
+        margin-top: 3rem;
+        width: 90%;
+    }
+}
+
+/* Desktop and larger screens */
+@media (min-width: 1025px) {
+    .footer-bottom {
+        font-size: 0.9rem;
+        padding: 1.5rem 2rem;
+        margin-top: 4rem;
+        width: 80%;
+        max-width: 1200px;
+    }
+}
+
