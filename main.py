@@ -4,6 +4,7 @@ import pandas as pd
 import pickle
 import ast
 from difflib import get_close_matches
+import os
 
 
 #load database 
@@ -131,4 +132,5 @@ def contact():
 
 # python main
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
