@@ -1,6 +1,6 @@
 {
-  "install": "pip install -r requirements.txt",
-  "start": "python main.py",
+  "install": "pip3 install -r requirements.txt",
+  "start": "python3 main.py",
   "watch": {
     "ignore": [
       "*.pyc",
@@ -24,6 +24,7 @@
   },
   "env": {
     "PYTHONUNBUFFERED": "1",
-    "PORT": "3000"
+    "PORT": "3000",
+    "PYTHON_VERSION": "3.9.0"
   }
 } 
