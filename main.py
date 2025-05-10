@@ -5,20 +5,52 @@ import pickle
 import ast
 from difflib import get_close_matches
 import os
+import json
 
+# Load data from JSON files (more efficient than CSV for this use case)
+def load_json_data(filename):
+    with open(f'datasets/{filename}.json', 'r') as f:
+        return json.load(f)
 
-#load database 
-sym_des = pd.read_csv('datasets/symptoms_df.csv')
-precautions = pd.read_csv('datasets/precautions_df.csv')
-workout = pd.read_csv('datasets/workout_df.csv')
-description = pd.read_csv('datasets/description.csv')
-medications = pd.read_csv('datasets/medications.csv')
-diets = pd.read_csv('datasets/diets.csv')
+# Convert CSV files to JSON for better performance
+def convert_csv_to_json():
+    if not os.path.exists('datasets/symptoms_df.json'):
+        sym_des = pd.read_csv('datasets/symptoms_df.csv')
+        sym_des.to_json('datasets/symptoms_df.json', orient='records')
+    
+    if not os.path.exists('datasets/precautions_df.json'):
+        precautions = pd.read_csv('datasets/precautions_df.csv')
+        precautions.to_json('datasets/precautions_df.json', orient='records')
+    
+    if not os.path.exists('datasets/workout_df.json'):
+        workout = pd.read_csv('datasets/workout_df.csv')
+        workout.to_json('datasets/workout_df.json', orient='records')
+    
+    if not os.path.exists('datasets/description.json'):
+        description = pd.read_csv('datasets/description.csv')
+        description.to_json('datasets/description.json', orient='records')
+    
+    if not os.path.exists('datasets/medications.json'):
+        medications = pd.read_csv('datasets/medications.csv')
+        medications.to_json('datasets/medications.json', orient='records')
+    
+    if not os.path.exists('datasets/diets.json'):
+        diets = pd.read_csv('datasets/diets.csv')
+        diets.to_json('datasets/diets.json', orient='records')
 
+# Convert CSV to JSON on startup
+convert_csv_to_json()
 
-#load model
+# Load data from JSON
+sym_des = pd.read_json('datasets/symptoms_df.json')
+precautions = pd.read_json('datasets/precautions_df.json')
+workout = pd.read_json('datasets/workout_df.json')
+description = pd.read_json('datasets/description.json')
+medications = pd.read_json('datasets/medications.json')
+diets = pd.read_json('datasets/diets.json')
+
+# Load model
 svc = pickle.load(open("models/svc.pkl", 'rb'))
-
 
 app = Flask(__name__)
 
