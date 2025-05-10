@@ -16,8 +16,20 @@ An AI-powered health assistant that predicts potential conditions based on sympt
 
 ## Setup
 1. Clone the repository
-2. Install requirements: `pip install -r requirements.txt`
-3. Run the application: `python main.py`
+2. Install requirements: `pip3 install -r requirements.txt`
+3. Run the application: `python3 main.py`
+
+## Deployment
+
+The application is deployed on Glitch:
+- Live URL: https://thrilling-peat-cesium.glitch.me
+- Built with Python 3.9
+- Uses Flask for the web framework
+- Includes ML model for disease prediction
 
 ## Note
-This is a preliminary diagnostic tool and should not replace professional medical consultation. 
+This is a preliminary diagnostic tool and should not replace professional medical consultation.
+
+## About
+
+AI-powered disease prediction and medication recommendation system. 
