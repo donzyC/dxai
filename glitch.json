@@ -1,0 +1,29 @@
+{
+  "install": "pip install -r requirements.txt",
+  "start": "python main.py",
+  "watch": {
+    "ignore": [
+      "*.pyc",
+      "*.pyo",
+      "*.pyd",
+      ".git",
+      "__pycache__",
+      "*.so",
+      "*.egg",
+      "*.egg-info",
+      "dist",
+      "build",
+      "*.log",
+      "*.sqlite3",
+      "*.db",
+      "*.csv",
+      "*.pkl",
+      "models/*",
+      "datasets/*"
+    ]
+  },
+  "env": {
+    "PYTHONUNBUFFERED": "1",
+    "PORT": "3000"
+  }
+} 
