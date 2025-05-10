@@ -6,6 +6,53 @@ import ast
 from difflib import get_close_matches
 import os
 import json
+import requests
+from pathlib import Path
+
+# Constants
+GITHUB_RELEASE_URL = "https://github.com/donzyC/dxai/releases/download/v1.0.0"
+CACHE_DIR = Path(".cache")
+CACHE_DIR.mkdir(exist_ok=True)
+
+def download_file(filename):
+    """Download a file from GitHub releases if it doesn't exist in cache."""
+    cache_path = CACHE_DIR / filename
+    if not cache_path.exists():
+        url = f"{GITHUB_RELEASE_URL}/{filename}"
+        response = requests.get(url)
+        response.raise_for_status()
+        cache_path.write_bytes(response.content)
+    return cache_path
+
+# Download and load model
+model_path = download_file("svc.pkl")
+svc = pickle.load(open(model_path, 'rb'))
+
+# Download and load data files
+data_files = {
+    'symptoms_df': 'symptoms_df.json',
+    'precautions_df': 'precautions_df.json',
+    'workout_df': 'workout_df.json',
+    'description': 'description.json',
+    'medications': 'medications.json',
+    'diets': 'diets.json'
+}
+
+# Load all data files
+data = {}
+for key, filename in data_files.items():
+    file_path = download_file(filename)
+    data[key] = pd.read_json(file_path)
+
+# Assign to variables for compatibility
+sym_des = data['symptoms_df']
+precautions = data['precautions_df']
+workout = data['workout_df']
+description = data['description']
+medications = data['medications']
+diets = data['diets']
+
+app = Flask(__name__)
 
 # Load data from JSON files (more efficient than CSV for this use case)
 def load_json_data(filename):
@@ -40,19 +87,6 @@ def convert_csv_to_json():
 
 # Convert CSV to JSON on startup
 convert_csv_to_json()
-
-# Load data from JSON
-sym_des = pd.read_json('datasets/symptoms_df.json')
-precautions = pd.read_json('datasets/precautions_df.json')
-workout = pd.read_json('datasets/workout_df.json')
-description = pd.read_json('datasets/description.json')
-medications = pd.read_json('datasets/medications.json')
-diets = pd.read_json('datasets/diets.json')
-
-# Load model
-svc = pickle.load(open("models/svc.pkl", 'rb'))
-
-app = Flask(__name__)
 
 # helper function
 def helper(dis):
