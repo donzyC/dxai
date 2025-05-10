@@ -1,5 +1,5 @@
 {
-  "install": "pip3 install --no-cache-dir -r requirements.txt",
+  "install": "pip3 install --no-cache-dir flask==2.0.1 numpy==1.19.5 pandas==1.1.5 scikit-learn==0.24.2 joblib==0.17.0",
   "start": "python3 main.py",
   "watch": {
     "ignore": [
@@ -78,7 +78,6 @@
   },
   "env": {
     "PYTHONUNBUFFERED": "1",
-    "PORT": "3000",
-    "PYTHON_VERSION": "3.9.0"
+    "PORT": "3000"
   }
 } 
