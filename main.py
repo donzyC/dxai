@@ -19,7 +19,7 @@ try:
     svc = pickle.load(open("models/svc.pkl", 'rb'))
     print("All data loaded successfully!")
 except Exception as e:
-    print(f"Error loading data: {str(e)}")
+    print("Error loading data: {}".format(str(e)))
     # Initialize empty dataframes if files not found
     sym_des = pd.DataFrame()
     precautions = pd.DataFrame()
@@ -67,7 +67,7 @@ def predict():
     if request.method == 'POST':
         symptoms = request.form.get('symptoms')
 
-        print(f"Received symptoms: {symptoms}")
+        print("Received symptoms: {}".format(symptoms))
 
         user_symptoms = [s.strip().lower().replace(' ', '_') for s in symptoms.split(',')]
         user_symptoms = [sym.strip("[]' ") for sym in user_symptoms]  
@@ -82,9 +82,9 @@ def predict():
             error_message = "The following symptoms are not recognized:\n"
             for symptom, sugg in suggestions.items():
                 if sugg:
-                    error_message += f"- '{symptom}' (Did you mean: {', '.join(sugg)}?)\n"
+                    error_message += "- '{}' (Did you mean: {}?)\n".format(symptom, ', '.join(sugg))
                 else:
-                    error_message += f"- '{symptom}' (No suggestions available)\n"
+                    error_message += "- '{}' (No suggestions available)\n".format(symptom)
             return render_template('index.html', error=error_message, symptoms=symptoms)
 
         try:
@@ -96,17 +96,16 @@ def predict():
                 if matching_key:
                     original_symptoms.append(matching_key)
                 else:
-                    raise ValueError(f"Could not find matching symptom for: {sym}")
+                    raise ValueError("Could not find matching symptom for: {}".format(sym))
 
             if not original_symptoms:
                 return render_template('index.html', error="Please enter at least one valid symptom", symptoms=symptoms)
             
-            print(f"Original symptoms for prediction: {original_symptoms}")
-
+            print("Original symptoms for prediction: {}".format(original_symptoms))
 
             predicted_disease = get_predicted_value(original_symptoms)
 
-            print(f"Predicted disease: {predicted_disease}")
+            print("Predicted disease: {}".format(predicted_disease))
 
             desc,pre,med,die,wrkout = helper(predicted_disease)
 
@@ -123,8 +122,8 @@ def predict():
                 symptoms=symptoms
             )
         except Exception as e:
-            print(f"Error during prediction: {str(e)}")  # Debug print
-            return render_template('index.html', error=f"An error occurred during prediction: {str(e)}", symptoms=symptoms)
+            print("Error during prediction: {}".format(str(e)))  # Debug print
+            return render_template('index.html', error="An error occurred during prediction: {}".format(str(e)), symptoms=symptoms)
 
     # GET request - just show the form
     return render_template('index.html')
@@ -141,5 +140,5 @@ def contact():
 if __name__ == '__main__':
     print("Starting the Flask application...")
     port = int(os.environ.get("PORT", 3000))
-    print(f"Running on port {port}")
+    print("Running on port {}".format(port))
     app.run(host='0.0.0.0', port=port, debug=True)
