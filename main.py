@@ -17,6 +17,7 @@ try:
     medications = pd.read_csv('datasets/medications.csv')
     diets = pd.read_csv('datasets/diets.csv')
     svc = pickle.load(open("models/svc.pkl", 'rb'))
+    print("All data loaded successfully!")
 except Exception as e:
     print(f"Error loading data: {str(e)}")
     # Initialize empty dataframes if files not found
@@ -138,5 +139,7 @@ def contact():
 
 # python main
 if __name__ == '__main__':
+    print("Starting the Flask application...")
     port = int(os.environ.get("PORT", 3000))
-    app.run(host='0.0.0.0', port=port)
+    print(f"Running on port {port}")
+    app.run(host='0.0.0.0', port=port, debug=True)
