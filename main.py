@@ -6,21 +6,27 @@ import ast
 from difflib import get_close_matches
 import os
 
-
-#load database 
-sym_des = pd.read_csv('datasets/symptoms_df.csv')
-precautions = pd.read_csv('datasets/precautions_df.csv')
-workout = pd.read_csv('datasets/workout_df.csv')
-description = pd.read_csv('datasets/description.csv')
-medications = pd.read_csv('datasets/medications.csv')
-diets = pd.read_csv('datasets/diets.csv')
-
-
-#load model
-svc = pickle.load(open("models/svc.pkl", 'rb'))
-
-
 app = Flask(__name__)
+
+# Load database 
+try:
+    sym_des = pd.read_csv('datasets/symptoms_df.csv')
+    precautions = pd.read_csv('datasets/precautions_df.csv')
+    workout = pd.read_csv('datasets/workout_df.csv')
+    description = pd.read_csv('datasets/description.csv')
+    medications = pd.read_csv('datasets/medications.csv')
+    diets = pd.read_csv('datasets/diets.csv')
+    svc = pickle.load(open("models/svc.pkl", 'rb'))
+except Exception as e:
+    print(f"Error loading data: {str(e)}")
+    # Initialize empty dataframes if files not found
+    sym_des = pd.DataFrame()
+    precautions = pd.DataFrame()
+    workout = pd.DataFrame()
+    description = pd.DataFrame()
+    medications = pd.DataFrame()
+    diets = pd.DataFrame()
+    svc = None
 
 # helper function
 def helper(dis):
@@ -132,5 +138,5 @@ def contact():
 
 # python main
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 3000))
     app.run(host='0.0.0.0', port=port)
