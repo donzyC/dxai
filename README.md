@@ -22,7 +22,7 @@ An AI-powered health assistant that predicts potential conditions based on sympt
 ## Deployment
 
 The application is deployed on Render:
-- Live URL: https://your-app-name.onrender.com
+- Live URL: http://dxai.onrender.com
 - Built with Python 3.12
 - Uses Flask for the web framework
 - Includes ML model for disease prediction
